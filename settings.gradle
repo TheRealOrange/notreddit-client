@@ -1,0 +1,2 @@
+rootProject.name='notreddit-client'
+include ':app'

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_margin="0dp"
+    android:id="@+id/card_view"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="2dp"
+    android:focusable="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/headder_no_subnotreddit"/>
+
+        <TextView
+            android:paddingHorizontal="15dp"
+            android:paddingBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Title"
+            android:textSize="20sp"
+            android:id="@+id/mcardview_name"/>
+
+        <include layout="@layout/text_content" />
+
+        <include layout="@layout/post_footer"/>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

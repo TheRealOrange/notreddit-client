@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragmentMain"
+    android:id="@+id/nav_graph" >
+    <fragment
+        android:id="@+id/fragmentMain"
+        android:name="com.therealorange.notreddit.fragments.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/fragment_main" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.therealorange.notreddit.fragments.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/fragment_search" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNewPost"
+        android:name="com.therealorange.notreddit.fragments.NewPostFragment"
+        android:label="new_post_fragment"
+        tools:layout="@layout/fragment_new_post" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInbox"
+        android:name="com.therealorange.notreddit.fragments.InboxFragment"
+        android:label="identification_fragment"
+        tools:layout="@layout/fragment_inbox" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.therealorange.notreddit.fragments.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/fragment_profile" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSaved"
+        android:name="com.therealorange.notreddit.fragments.SavedFragment"
+        android:label="saved_fragment"
+        tools:layout="@layout/fragment_saved" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHistory"
+        android:name="com.therealorange.notreddit.fragments.HistoryFragment"
+        android:label="history_fragment"
+        tools:layout="@layout/fragment_history" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentsDrafts"
+        android:name="com.therealorange.notreddit.fragments.DraftsFragment"
+        android:label="drafts_fragment"
+        tools:layout="@layout/fragment_drafts" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentPendingPosts"
+        android:name="com.therealorange.notreddit.fragments.PendingPostsFragment"
+        android:label="pending_posts_fragment"
+        tools:layout="@layout/fragment_pending_posts" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentCreateCommunity"
+        android:name="com.therealorange.notreddit.fragments.LoginFragment"
+        android:label="create_community_fragment"
+        tools:layout="@layout/fragment_create_community">
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="com.therealorange.notreddit.fragments.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/fragment_settings" >
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.therealorange.notreddit.fragments.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/fragment_login">
+    </fragment>
+</navigation>

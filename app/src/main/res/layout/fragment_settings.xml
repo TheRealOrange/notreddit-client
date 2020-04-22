@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="start"
+            android:gravity="bottom"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="16dp"
+            android:text="ACCOUNT SETTINGS"
+            android:textStyle="bold"
+            android:background="?colorBackgroundAccent"
+            android:textColor="?colorTextAccent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_launcher_foreground" />
+
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_toEndOf="@id/profileImage"
+                android:lines="1"
+                android:text="u/therealoranges"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="16dp"
+            android:text="VIEW OPTIONS"
+            android:textStyle="bold"
+            android:background="?colorBackgroundAccent"
+            android:textColor="?colorTextAccent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/defaultViewText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Default View"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/defaultViewButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/textSizeText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Text Size"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/textSizeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/autoplayText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Autoplay"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/autoplayButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/thumbnailText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Thumbnails"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/thumbnailButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="16dp"
+            android:text="DARK MODE"
+            android:textStyle="bold"
+            android:background="?colorBackgroundAccent"
+            android:textColor="?colorTextAccent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/automaticText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Automatic"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <Switch
+                android:id="@+id/automaticSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                style="@style/TextAppearance.AppCompat.Widget.Switch" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/darkModeText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Dark Mode"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <Switch
+                android:id="@+id/darkModeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                style="@style/TextAppearance.AppCompat.Widget.Switch" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/lightThemeText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Light Theme"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/lightThemeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/darkThemeText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Dark Theme"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/darkThemeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="16dp"
+            android:text="ADVANCED"
+            android:textStyle="bold"
+            android:background="@color/leaf_green_muted"
+            android:textColor="?colorTextAccent"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/swipeToCollapseText"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Swipe to collapse comments"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <Switch
+                android:id="@+id/swipeToCollapseSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                style="@style/TextAppearance.AppCompat.Widget.Switch" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/savedImageAttrText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Saved image attribution"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <Switch
+                android:id="@+id/savedImageAttrSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                style="@style/TextAppearance.AppCompat.Widget.Switch" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/recentCommunitiesText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Recent communities"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <Switch
+                android:id="@+id/recentCommunitiesSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                style="@style/TextAppearance.AppCompat.Widget.Switch" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/defaultCommentSortText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Default comment sort"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/defaultCommentSortButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/linkBrowserText"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Link browser"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/linkBrowserButton"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_alignParentEnd="true"
+                app:icon="@drawable/ic_add"
+                app:iconGravity="textStart"
+                android:gravity="center"
+                app:iconTint="?colorTextAccent"
+                android:textColor="?colorTextAccent"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="?colorBackground">
+
+            <TextView
+                android:id="@+id/clearLocalHistoryTextButton"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="8dp"
+                android:drawableStart="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:text="Clear local history"
+                android:drawableTint="?colorTextAccent"
+                android:textColor="?colorText" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>

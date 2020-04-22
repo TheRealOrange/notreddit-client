@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_profileFragment"
+        android:icon="@drawable/ic_add"
+        android:title="Profile" />
+    <item android:id="@+id/nav_savedFragment"
+        android:icon="@drawable/ic_add"
+        android:title="Saved" />
+    <item android:id="@+id/nav_historyFragment"
+        android:icon="@drawable/ic_add"
+        android:title="History" />
+    <item android:id="@+id/nav_pendingPostsFragment"
+        android:icon="@drawable/ic_add"
+        android:title="Pending Posts" />
+    <item android:id="@+id/nav_draftsFragment"
+        android:icon="@drawable/ic_add"
+        android:title="Drafts" />
+    <item android:id="@+id/nav_createCommunityFragment"
+        android:icon="@drawable/ic_add"
+        android:title="Create Community" />
+</menu>
