@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 
 object DraftsController : FragmentController {
     private lateinit var mcontext: Fragment
+
+    override fun onCreateView(context: Fragment) {
+    }
+
     override fun onViewCreated(context: Fragment) {
         mcontext = context
         with(mcontext) {

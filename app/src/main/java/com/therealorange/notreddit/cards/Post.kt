@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.therealorange.notreddit.R
-import com.therealorange.notreddit.data.objects.PostContent
+import com.therealorange.notreddit.client.data.objects.PostContent
 import com.therealorange.notreddit.data.objects.SubNotReddit
-import com.therealorange.notreddit.data.objects.UserInfo
+import com.therealorange.notreddit.client.data.objects.UserInfo
 import com.therealorange.notreddit.util.DownloadImageTask
 import kotlinx.android.synthetic.main.headder_no_subnotreddit.*
 import kotlinx.android.synthetic.main.header_subnotreddit.*
 import kotlinx.android.synthetic.main.img_content.*
 import kotlinx.android.synthetic.main.post_footer.*
 import kotlinx.android.synthetic.main.text_content.*
-import org.joda.time.DateTime
 
 class Post(c: PostContent, header: Boolean, vote: ((p:Post, upvote: Boolean)->Unit), menu: ((p: Post)->Unit), comments: ((p: Post)->Unit), share: ((p: Post)->Post)) : Fragment() {
     var postId: Int = -1

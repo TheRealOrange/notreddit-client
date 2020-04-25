@@ -1,8 +1,6 @@
 package com.therealorange.notreddit.client.data
 
 import kotlinx.serialization.Serializable
-import org.joda.time.DateTime
-import org.joda.time.LocalDate
 
 @Serializable
 sealed class Data {
@@ -20,4 +18,8 @@ sealed class Data {
 
     @Serializable
     data class AddUser(val user: String, val hashedpwd: String) : Data() //client
+
+    object Ping : Data()
+
+    object Pong : Data()
 }

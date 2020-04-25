@@ -1,5 +1,6 @@
 package com.therealorange.notreddit.adapters
 
+import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,44 +8,46 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.github.chrisbanes.photoview.PhotoView
 import com.therealorange.notreddit.R
-import com.therealorange.notreddit.tabs.FragmentObject
 import kotlinx.android.synthetic.main.img_view.*
+import kotlinx.android.synthetic.main.img_view.view.*
 
-class PhotosAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    val fragments = mutableListOf<Fragment>()
 
-    override fun getItemCount() = fragments.size
+class PhotosAdapter(mcontext: Context, img: MutableList<Bitmap>) :
+    RecyclerView.Adapter<PhotosAdapter.ViewHolder>() {
+    val imgs = img
+    val context = mcontext
 
-    fun addPhoto(bm : Bitmap): Int {
-        fragments.add(object : Fragment() {
-            override fun onCreateView(
-                inflater: LayoutInflater,
-                container: ViewGroup?,
-                savedInstanceState: Bundle?
-            ): View {
-                return inflater.inflate(R.layout.img_view, container, false)
-            }
+    override fun getItemCount() = imgs.size
 
-            override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-                arguments?.takeIf { it.containsKey("ARG_OBJECT") }?.apply {
-                    photoView.setImageBitmap(bm)
-                }
-            }
-        })
-        return fragments.size-1
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.img_view, parent, false))
     }
 
-    fun removePhoto(pos: Int) = fragments.removeAt(pos)
+    fun addPhoto(bm: Bitmap): Int {
+        imgs.add(bm)
+        notifyDataSetChanged()
+        return itemCount-1
+    }
 
-    override fun createFragment(position: Int): Fragment {
-        // Return a NEW tab_layout instance in createFragment(int)
-        val fragment = fragments[position]
-        fragment.arguments = Bundle().apply {
-            // Our object is just an integer :-P
-            putInt("ARG_OBJECT", position + 1)
-        }
-        return fragment
+    fun changePhoto(bm: Bitmap, pos: Int) {
+        imgs[pos] = bm
+        notifyItemChanged(pos)
+    }
+
+    fun removePhoto(pos: Int){
+        imgs.removeAt(pos)
+        notifyDataSetChanged()
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.imgViewer.setImageBitmap(imgs[position])
+    }
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        // Holds the TextView that will add each animal to
+        val imgViewer: PhotoView = view.photoView
     }
 }

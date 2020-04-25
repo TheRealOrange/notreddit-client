@@ -43,6 +43,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        mainController.onCreateView(this)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 }
