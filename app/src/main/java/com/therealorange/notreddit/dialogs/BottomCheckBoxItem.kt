@@ -1,4 +1,4 @@
-package com.therealorange.notreddit.util
+package com.therealorange.notreddit.dialogs
 
 data class BottomCheckBoxItem(
     val name: String,

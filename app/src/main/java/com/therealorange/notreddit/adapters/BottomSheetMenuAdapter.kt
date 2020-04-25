@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.therealorange.notreddit.R
-import com.therealorange.notreddit.util.BottomMenuItem
+import com.therealorange.notreddit.dialogs.BottomMenuItem
 import kotlinx.android.synthetic.main.bottom_sheet_menu_item.view.*
 
 class BottomSheetMenuAdapter(private var items: List<BottomMenuItem>) : RecyclerView.Adapter<BottomSheetMenuAdapter.BottomSheetMenuViewHolder>() {

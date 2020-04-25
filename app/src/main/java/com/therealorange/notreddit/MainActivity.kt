@@ -1,9 +1,11 @@
 package com.therealorange.notreddit
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.ContentFrameLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -12,6 +14,7 @@ import com.therealorange.notreddit.client.Client
 import com.therealorange.notreddit.client.WebSocket
 import com.therealorange.notreddit.util.BottomNavigation
 import com.therealorange.notreddit.util.DrawerNavigation
+import com.therealorange.notreddit.util.ImageCaching
 import com.therealorange.notreddit.util.Preferences
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,7 +23,12 @@ class MainActivity : AppCompatActivity() {
     var mbottomNavigation: BottomNavigationView? = null
     private var serverConnect = false
 
+    companion object {
+        lateinit var appContext: Context
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        appContext = applicationContext
         if (intent.getBooleanExtra("LOGOUT", false))
         {
             finish();
@@ -29,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         Client.connectCallbacks.add {
             serverConnect = true
         }
+        ImageCaching.init(applicationContext)
         //Client.init()
         //while(!serverConnect) {}
         WebSocket

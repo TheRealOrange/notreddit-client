@@ -18,15 +18,7 @@
 
         <include layout="@layout/headder_no_subnotreddit"/>
 
-        <TextView
-            android:paddingHorizontal="15dp"
-            android:paddingBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Title"
-            android:textSize="20sp"
-            android:id="@+id/mcardview_name"/>
+        <include layout="@layout/title_content"/>
 
         <include layout="@layout/text_content" />
 

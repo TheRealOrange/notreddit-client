@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/fragmentMain"
-    android:id="@+id/nav_graph" >
+    android:id="@+id/main_nav" >
+    <action android:id="@+id/createNewPostAction"
+        app:destination="@id/fragmentNewPost" >
+        <argument
+            android:name="post_type"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </action>
     <fragment
         android:id="@+id/fragmentMain"
         android:name="com.therealorange.notreddit.fragments.MainFragment"
@@ -21,6 +28,10 @@
         android:name="com.therealorange.notreddit.fragments.NewPostFragment"
         android:label="new_post_fragment"
         tools:layout="@layout/fragment_new_post" >
+        <argument
+            android:name="post_type"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/fragmentInbox"

@@ -13,8 +13,13 @@ class DownloadImageTask(var bmImage: ImageView) : AsyncTask<String?, Void?, Bitm
         val urldisplay = urls[0]
         var mIcon11: Bitmap? = null
         try {
-            val `in`: InputStream = URL(urldisplay).openStream()
-            mIcon11 = BitmapFactory.decodeStream(`in`)
+            if (!ImageCaching.imgCached(urldisplay!!)) {
+                val input: InputStream = URL(urldisplay).openStream()
+                mIcon11 = BitmapFactory.decodeStream(input)
+                ImageCaching.cacheImg(urldisplay, mIcon11)
+            } else {
+                mIcon11 = ImageCaching.getImg(urldisplay)
+            }
         } catch (e: Exception) {
             Log.e("Error", e.message!!)
             e.printStackTrace()

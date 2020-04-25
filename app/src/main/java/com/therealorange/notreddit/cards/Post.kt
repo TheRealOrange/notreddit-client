@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.therealorange.notreddit.R
 import com.therealorange.notreddit.client.data.objects.PostContent
-import com.therealorange.notreddit.data.objects.SubNotReddit
+import com.therealorange.notreddit.client.data.objects.SubNotRedditInfo
 import com.therealorange.notreddit.client.data.objects.UserInfo
 import com.therealorange.notreddit.util.DownloadImageTask
 import kotlinx.android.synthetic.main.headder_no_subnotreddit.*
@@ -22,7 +22,7 @@ class Post(c: PostContent, header: Boolean, vote: ((p:Post, upvote: Boolean)->Un
     var score: Int = 0
     var commentNum: Int = 0
     lateinit var user: UserInfo
-    lateinit var subnotreddit: SubNotReddit
+    lateinit var subnotreddit: SubNotRedditInfo
     lateinit var time: String
     val content = c
     val header = header

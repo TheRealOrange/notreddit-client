@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.therealorange.notreddit.R
-import com.therealorange.notreddit.util.BottomCheckBoxItem
-import com.therealorange.notreddit.util.BottomMenuItem
+import com.therealorange.notreddit.dialogs.BottomCheckBoxItem
 import kotlinx.android.synthetic.main.bottom_sheet_menu_item.view.*
 
 class BottomSheetCheckBoxAdapter(private var items: List<BottomCheckBoxItem>) : RecyclerView.Adapter<BottomSheetCheckBoxAdapter.BottomSheetMenuViewHolder>() {

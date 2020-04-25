@@ -5,21 +5,20 @@ import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.github.chrisbanes.photoview.PhotoView
 import com.therealorange.notreddit.R
-import kotlinx.android.synthetic.main.img_view.view.*
+import kotlinx.android.synthetic.main.img_preview.view.*
 
-
-class PhotosAdapter(mcontext: Context, img: MutableList<Bitmap>) :
-    RecyclerView.Adapter<PhotosAdapter.ViewHolder>() {
+class PhotoPreviewAdapter(mcontext: Context, img: MutableList<Bitmap>) :
+    RecyclerView.Adapter<PhotoPreviewAdapter.ViewHolder>() {
     val imgs = img
     val context = mcontext
 
     override fun getItemCount() = imgs.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.img_view, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.img_preview, parent, false))
     }
 
     fun addPhoto(bm: Bitmap): Int {
@@ -44,6 +43,6 @@ class PhotosAdapter(mcontext: Context, img: MutableList<Bitmap>) :
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Holds the TextView that will add each animal to
-        val imgViewer: PhotoView = view.photoView
+        val imgViewer: ImageView = view.imagePreview
     }
 }

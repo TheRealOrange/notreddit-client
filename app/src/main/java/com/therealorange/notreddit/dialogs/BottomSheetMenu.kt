@@ -1,4 +1,4 @@
-package com.therealorange.notreddit.util
+package com.therealorange.notreddit.dialogs
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.therealorange.notreddit.R
 import com.therealorange.notreddit.adapters.BottomSheetMenuAdapter
+import com.therealorange.notreddit.dialogs.BottomMenuItem
 import kotlinx.android.synthetic.main.bottom_sheet_menu.view.*
 
 class BottomSheetMenu(private val context: Context,

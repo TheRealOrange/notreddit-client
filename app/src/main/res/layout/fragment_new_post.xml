@@ -1,76 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:fitsSystemWindows="true">
+        android:layout_height="wrap_content"
+        android:id="@+id/postHeader">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:expandedTitleGravity="top"
-            app:toolbarId="@+id/toolbar">
-
-            <ImageView
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background"
-                android:fitsSystemWindows="true"
-                android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@android:color/white"
-                android:layout_marginStart="32dp"
-                android:layout_marginBottom="32dp"
-                android:layout_marginEnd="32dp"
-                app:layout_collapseMode="parallax"
-                android:layout_gravity="bottom"
-                android:text="Like LuaPass?\nBuy me a coffee :)"/>
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="bbheqjiub twerjbhei rgiubhgrf bfsoin on rtobbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjobifdikmbvoiu ;lkj b ibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb ebbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjobifdibbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjobifdikmbvoiu ;lkj b kmbvoiu ;lkj b faoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjbbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdbbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifbbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvbbheqjiub twerjbhei rgiubhgrf bfsoin on rtoibrto nrg rg onrtyr rt fdbsdfgbnregf bfgd njafgikj dafd dfNV fgh udfnjabjketb lfsdkb  rgti fd jknhrevbkjfdnm kjfdgjhbv kl;jfd b kjd fdljhjvbfldkjbv nmerkjlghioujgoui34rhgiuredvoiwrehg iufd ijkfd iufdj iuoreqh bofn uijhfdah oifedbjioupfgdaj okfdb oifrd jfdlkbj oeirpj erbh rieujbo fdbihrteahbiore fbiujtr ghoi upwjfs ojb efaoi fdeoijlhbj opiurej boirefjhb9iprej jferhb iuofd n dvfs,kjbhiutrebj iouretbjhv n9sfd mrewlkj fiurev jkl;fdjguiofdjgkjlrenuiyog feospi nrteijhbofjkdnbvjkhdf pdsfI biopufejvkldcm rsituhb iosfdjklfsdmv mlkfd boijgjbkltpoi89 jk;lcv boireajhl;kdsf fdja oriewa  dfsaljjhfgvdsiovjlkdfg dkjfvnb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjobifdikmbvoiu ;lkj b nb fdsjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjobifdikmbvoiu ;lkj b dgvskjobifdikmbvoiu ;lkj b sjioaklnvdsklp;jiopf[d bdfkjl bojfd bpoifdgvskjobifdikmbvoiu ;lkj b obifdikmbvoiu ;lkj b " />
+            android:layout_marginStart="16dp"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="start"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-    </androidx.core.widget.NestedScrollView>
+        <TextView
+            android:id="@+id/postTypeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="post" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="POST"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/newPostSelect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/newPostSubNotRedditIcon"
+            android:src="@drawable/ic_launcher_foreground"/>
+
+        <TextView
+            android:id="@+id/newPostSubNotRedditName"
+            android:layout_toEndOf="@id/newPostSubNotRedditIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:drawableEnd="@drawable/ic_add"
+            android:drawablePadding="16dp"
+            android:text="Select a Community" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/newPostTitleEdit"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        android:layout_margin="32dp"
-        style="@style/Widget.MaterialComponents.FloatingActionButton"/>
+        android:layout_margin="16dp"
+        android:hint="Title"
+        android:maxLines="3" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/newPostAddImg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:text="ADD IMAGES" />
+
+    <EditText
+        android:id="@+id/newPostTextEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="19dp"
+        android:hint="text"
+        android:maxLines="500" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/newPostPhotoPreview"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+</LinearLayout>

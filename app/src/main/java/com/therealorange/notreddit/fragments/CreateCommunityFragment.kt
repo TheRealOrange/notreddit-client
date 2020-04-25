@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.therealorange.notreddit.R
 import com.therealorange.notreddit.controllers.CreateCommunityController
-import com.therealorange.notreddit.controllers.DraftsController
 
 class CreateCommunityFragment : Fragment() {
     val mainController = CreateCommunityController

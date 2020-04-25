@@ -1,6 +1,5 @@
 package com.therealorange.notreddit.tabs
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.therealorange.notreddit.R
