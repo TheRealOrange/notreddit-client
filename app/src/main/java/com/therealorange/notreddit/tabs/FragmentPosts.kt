@@ -1,5 +1,6 @@
 package com.therealorange.notreddit.tabs
 
+import android.nfc.NfcAdapter.EXTRA_ID
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,23 +11,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.therealorange.notreddit.MainNavDirections
 import com.therealorange.notreddit.R
 import com.therealorange.notreddit.adapters.PostsAdapter
-import com.therealorange.notreddit.client.User
 import com.therealorange.notreddit.client.WebSocket
 import com.therealorange.notreddit.client.data.SortType
-import com.therealorange.notreddit.client.data.UserType
 import com.therealorange.notreddit.client.data.VoteStatus
 import com.therealorange.notreddit.client.data.objects.PostContent
 import com.therealorange.notreddit.client.data.objects.SubNotRedditInfo
 import com.therealorange.notreddit.client.data.objects.UserInfo
 import com.therealorange.notreddit.util.PostItem
-import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.posts_page.*
 
-class FragmentHome : FragmentObject(R.layout.fragment_home,"Home") {
-
+class FragmentPosts : FragmentObject(R.layout.posts_page,"Posts", EXTRA_ID) {
     lateinit var adapter: PostsAdapter
     var posts = mutableListOf<PostItem>()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,48 +32,50 @@ class FragmentHome : FragmentObject(R.layout.fragment_home,"Home") {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.takeIf { it.containsKey("ARG_OBJECT") }?.apply {
-            recyclerview(this@FragmentHome)
-            if (User.usertype == UserType.USER_NORMAL) {
-                WebSocket.sendGetFeed(SortType.BEST) { feedposts->
-                    feedposts.forEach { postId->
-                        WebSocket.sendGetPost(postId) { post->
-                            var newPostItem: PostItem? = null
-                            when(post) {
-                                is PostContent.TextPost -> newPostItem = PostItem.TextPostItem(
-                                    post,
-                                    subNotRedditClicked = { enterSubNotReddit((it as PostItem.TextPostItem).content.subnotredddit) },
-                                    userClicked = { enterUserProfile((it as PostItem.TextPostItem).content.user) },
-                                    titleClicked = { viewPost((it as PostItem.TextPostItem).content) },
-                                    textClicked = { viewPost((it as PostItem.TextPostItem).content) },
-                                    upvoteClicked = { button: Button, postItem: PostItem -> upvote(button, (postItem as PostItem.TextPostItem).content) },
-                                    downvoteClicked = { button: Button, postItem: PostItem -> downvote(button, (postItem as PostItem.TextPostItem).content) },
-                                    commentClicked = { viewPost((it as PostItem.TextPostItem).content) },
-                                    shareClicked = { shareMenu((it as PostItem.TextPostItem).content) }
-                                )
-                                is PostContent.ImgPost -> newPostItem = PostItem.ImgPostItem(
-                                    post,
-                                    subNotRedditClicked = { enterSubNotReddit((it as PostItem.ImgPostItem).content.subnotredddit) },
-                                    userClicked = { enterUserProfile((it as PostItem.ImgPostItem).content.user) },
-                                    titleClicked = { viewPost((it as PostItem.ImgPostItem).content) },
-                                    imageClicked = { imagePreview((it as PostItem.ImgPostItem).content.imgs) },
-                                    upvoteClicked = { button: Button, postItem: PostItem -> upvote(button, (postId as PostItem.ImgPostItem).content) },
-                                    downvoteClicked = { button: Button, postItem: PostItem -> downvote(button, (postItem as PostItem.ImgPostItem).content) },
-                                    commentClicked = { viewPost((it as PostItem.ImgPostItem).content) },
-                                    shareClicked = { shareMenu((it as PostItem.ImgPostItem).content) }
-                                )
-                                is PostContent.ImgTextPost -> newPostItem = PostItem.ImgTextPostItem(
-                                    post,
-                                    subNotRedditClicked = { enterSubNotReddit((it as PostItem.ImgTextPostItem).content.subnotredddit) },
-                                    userClicked = { enterUserProfile((it as PostItem.ImgTextPostItem).content.user) },
-                                    titleClicked = { viewPost((it as PostItem.ImgTextPostItem).content) },
-                                    textClicked = { viewPost((it as PostItem.ImgTextPostItem).content) },
-                                    imageClicked = { imagePreview((it as PostItem.ImgTextPostItem).content.imgs) },
-                                    upvoteClicked = { button: Button, postItem: PostItem -> upvote(button, (postItem as PostItem.ImgTextPostItem).content) },
-                                    downvoteClicked = { button: Button, postItem: PostItem -> downvote(button, (postItem as PostItem.ImgTextPostItem).content) },
-                                    commentClicked = { viewPost((it as PostItem.ImgTextPostItem).content) },
-                                    shareClicked = { shareMenu((it as PostItem.ImgTextPostItem).content) }
-                                )
+        arguments?.takeIf { it.containsKey(extraId) }?.apply {
+            recyclerview(this@FragmentPosts)
+            if (this.getString(extraId)?.toIntOrNull() != null) {
+                WebSocket.sendGetSubNotReddit(this.getString(extraId)!!.toIntOrNull()!!) { subnotreddit->
+                    WebSocket.sendGetSubNotRedditPosts(subnotreddit.subNotRedditId, SortType.BEST) { subredditposts->
+                        subredditposts.forEach { postId->
+                            WebSocket.sendGetPost(postId) { post->
+                                var newPostItem: PostItem? = null
+                                when(post) {
+                                    is PostContent.TextPost -> newPostItem = PostItem.TextPostItem(
+                                        post,
+                                        subNotRedditClicked = { enterSubNotReddit((it as PostItem.TextPostItem).content.subnotredddit) },
+                                        userClicked = { enterUserProfile((it as PostItem.TextPostItem).content.user) },
+                                        titleClicked = { viewPost((it as PostItem.TextPostItem).content) },
+                                        textClicked = { viewPost((it as PostItem.TextPostItem).content) },
+                                        upvoteClicked = { button: Button, postItem: PostItem -> upvote(button, (postItem as PostItem.TextPostItem).content) },
+                                        downvoteClicked = { button: Button, postItem: PostItem -> downvote(button, (postItem as PostItem.TextPostItem).content) },
+                                        commentClicked = { viewPost((it as PostItem.TextPostItem).content) },
+                                        shareClicked = { shareMenu((it as PostItem.TextPostItem).content) }
+                                    )
+                                    is PostContent.ImgPost -> newPostItem = PostItem.ImgPostItem(
+                                        post,
+                                        subNotRedditClicked = { enterSubNotReddit((it as PostItem.ImgPostItem).content.subnotredddit) },
+                                        userClicked = { enterUserProfile((it as PostItem.ImgPostItem).content.user) },
+                                        titleClicked = { viewPost((it as PostItem.ImgPostItem).content) },
+                                        imageClicked = { imagePreview((it as PostItem.ImgPostItem).content.imgs) },
+                                        upvoteClicked = { button: Button, postItem: PostItem -> upvote(button, (postId as PostItem.ImgPostItem).content) },
+                                        downvoteClicked = { button: Button, postItem: PostItem -> downvote(button, (postItem as PostItem.ImgPostItem).content) },
+                                        commentClicked = { viewPost((it as PostItem.ImgPostItem).content) },
+                                        shareClicked = { shareMenu((it as PostItem.ImgPostItem).content) }
+                                    )
+                                    is PostContent.ImgTextPost -> newPostItem = PostItem.ImgTextPostItem(
+                                        post,
+                                        subNotRedditClicked = { enterSubNotReddit((it as PostItem.ImgTextPostItem).content.subnotredddit) },
+                                        userClicked = { enterUserProfile((it as PostItem.ImgTextPostItem).content.user) },
+                                        titleClicked = { viewPost((it as PostItem.ImgTextPostItem).content) },
+                                        textClicked = { viewPost((it as PostItem.ImgTextPostItem).content) },
+                                        imageClicked = { imagePreview((it as PostItem.ImgTextPostItem).content.imgs) },
+                                        upvoteClicked = { button: Button, postItem: PostItem -> upvote(button, (postItem as PostItem.ImgTextPostItem).content) },
+                                        downvoteClicked = { button: Button, postItem: PostItem -> downvote(button, (postItem as PostItem.ImgTextPostItem).content) },
+                                        commentClicked = { viewPost((it as PostItem.ImgTextPostItem).content) },
+                                        shareClicked = { shareMenu((it as PostItem.ImgTextPostItem).content) }
+                                    )
+                                }
                             }
                         }
                     }
@@ -125,10 +123,10 @@ class FragmentHome : FragmentObject(R.layout.fragment_home,"Home") {
 
     fun updateVote(voteStatus: VoteStatus, postId: Int) {
         val pos = posts.indexOfFirst { when(it) {
-            is PostItem.TextPostItem -> it.content.postId == postId
-            is PostItem.ImgPostItem -> it.content.postId == postId
-            is PostItem.ImgTextPostItem -> it.content.postId == postId
-        }
+                is PostItem.TextPostItem -> it.content.postId == postId
+                is PostItem.ImgPostItem -> it.content.postId == postId
+                is PostItem.ImgTextPostItem -> it.content.postId == postId
+            }
         }
         if (pos >= 0) WebSocket.sendPostVote(pos, voteStatus) {
             if (it) {
@@ -198,8 +196,8 @@ class FragmentHome : FragmentObject(R.layout.fragment_home,"Home") {
             val layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = PostsAdapter(context.requireContext(), mutableListOf())
-            fragmentHomePageRecycler.adapter = adapter
-            fragmentHomePageRecycler.layoutManager = layoutManager
+            subnotredditpageRecycler.adapter = adapter
+            subnotredditpageRecycler.layoutManager = layoutManager
         }
     }
 }

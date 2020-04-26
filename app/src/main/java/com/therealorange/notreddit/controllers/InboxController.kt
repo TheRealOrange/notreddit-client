@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.fragment.app.Fragment
 import com.therealorange.notreddit.adapters.PhotosAdapter
+import com.therealorange.notreddit.util.BottomNavigation
 import kotlinx.android.synthetic.main.fragment_inbox.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ object InboxController : FragmentController {
 
     override fun onCreateView(context: Fragment) {
         photoviewadapter = PhotosAdapter(context.requireContext(), mutableListOf())
+        BottomNavigation.hide(false)
     }
 
     override fun onViewCreated(context: Fragment) {

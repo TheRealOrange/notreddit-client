@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.ContentFrameLayout
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.therealorange.notreddit.client.Client
 import com.therealorange.notreddit.client.WebSocket
@@ -18,17 +21,20 @@ import com.therealorange.notreddit.util.ImageCaching
 import com.therealorange.notreddit.util.Preferences
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : FragmentActivity() {
     private lateinit var navController: NavController
     var mbottomNavigation: BottomNavigationView? = null
     private var serverConnect = false
 
     companion object {
         lateinit var appContext: Context
+        lateinit var appFragmentManager: FragmentManager
+        lateinit var appBar: AppBarLayout
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         appContext = applicationContext
+        appFragmentManager = supportFragmentManager
         if (intent.getBooleanExtra("LOGOUT", false))
         {
             finish();
@@ -42,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         //while(!serverConnect) {}
         WebSocket
         Preferences.init(this)
+        if (Preferences.isDarkMode()) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setTheme(
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) R.style.AppTheme
             else R.style.AppTheme_Light
@@ -50,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         //mbottomNavigation = findViewById(R.id.bottom_navigation);
         var mToolbar = findViewById<Toolbar>(R.id.toolbar)
+        appBar = app_bar_top
 
         //setSupportActionBar(mToolbar)
         val toggle = ActionBarDrawerToggle(this, drawer_layout, mToolbar, 0, 0)
@@ -63,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             BottomNavigation.userMap, navController,
             bottom_navigation as BottomNavigationView
         )
-        DrawerNavigation.init(DrawerNavigation.logged_in_map, navController, nav_view, drawer_layout)
+        DrawerNavigation.init(DrawerNavigation.logged_out_map, navController, nav_view, drawer_layout)
 
         settingsButton.setOnClickListener {
             DrawerNavigation.navigate(R.id.fragmentSettings)
@@ -73,8 +83,10 @@ class MainActivity : AppCompatActivity() {
         darkModeToggle.setOnClickListener {
             if (AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                Preferences.setDarkMode(false)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                Preferences.setDarkMode(true)
             }
 
             recreate()

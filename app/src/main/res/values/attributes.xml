@@ -4,4 +4,6 @@
     <attr name="colorText" format="color"/>
     <attr name="colorTextAccent" format="color"/>
     <attr name="colorBackgroundAccent" format="color"/>
+    <attr name="colorUpvote" format="color"/>
+    <attr name="colorDownvote" format="color"/>
 </resources>

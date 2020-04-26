@@ -4,12 +4,13 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64.*
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.util.*
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 object ImageUtils {
-    fun encodeTobase64(image: Bitmap): String? {
+    fun encodeToBase64(image: Bitmap): String? {
         val baos = ByteArrayOutputStream()
         image.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b: ByteArray = baos.toByteArray()
@@ -30,5 +31,18 @@ object ImageUtils {
             return Bitmap.createScaledBitmap(bm, newWidth.roundToInt(), newHeight.roundToInt(), true)
         }
         return bm
+    }
+
+    fun File.writeBitmap(bitmap: Bitmap) {
+        outputStream().use { out ->
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out)
+            out.flush()
+        }
+    }
+
+    fun File.readBitmap(): Bitmap {
+        inputStream().use { input ->
+            return BitmapFactory.decodeStream(input)
+        }
     }
 }

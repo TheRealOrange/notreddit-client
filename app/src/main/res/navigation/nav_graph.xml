@@ -11,6 +11,13 @@
             app:argType="integer"
             android:defaultValue="0" />
     </action>
+    <action android:id="@+id/visitSubNotRedditAction"
+        app:destination="@id/fragmentSubNotReddit">
+        <argument
+            android:name="subnotreddit_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </action>
     <fragment
         android:id="@+id/fragmentMain"
         android:name="com.therealorange.notreddit.fragments.MainFragment"
@@ -32,6 +39,11 @@
             android:name="post_type"
             app:argType="integer"
             android:defaultValue="0" />
+        <action android:id="@+id/postCreatedToHomeFragment"
+            app:destination="@id/fragmentMain"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentInbox"
@@ -46,34 +58,37 @@
         tools:layout="@layout/fragment_profile" >
     </fragment>
     <fragment
-        android:id="@+id/fragmentSaved"
-        android:name="com.therealorange.notreddit.fragments.SavedFragment"
+        android:id="@+id/fragmentLoginUser"
+        android:name="com.therealorange.notreddit.fragments.LoginUserFragment"
         android:label="saved_fragment"
-        tools:layout="@layout/fragment_saved" >
+        tools:layout="@layout/fragment_login_user" >
+        <action android:id="@+id/loggedInToHomeFragment"
+            app:destination="@id/fragmentMain"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
-        android:id="@+id/fragmentHistory"
-        android:name="com.therealorange.notreddit.fragments.HistoryFragment"
-        android:label="history_fragment"
-        tools:layout="@layout/fragment_history" >
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentsDrafts"
-        android:name="com.therealorange.notreddit.fragments.DraftsFragment"
-        android:label="drafts_fragment"
-        tools:layout="@layout/fragment_drafts" >
-    </fragment>
-    <fragment
-        android:id="@+id/fragmentPendingPosts"
-        android:name="com.therealorange.notreddit.fragments.PendingPostsFragment"
-        android:label="pending_posts_fragment"
-        tools:layout="@layout/fragment_pending_posts" >
+        android:id="@+id/fragmentSignUpUser"
+        android:name="com.therealorange.notreddit.fragments.SignUpUserFragment"
+        android:label="sign_up_user_fragment"
+        tools:layout="@layout/fragment_signup_user" >
+        <action android:id="@+id/signUpCompleteToLogInAction"
+            app:destination="@+id/fragmentLoginUser"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentCreateCommunity"
-        android:name="com.therealorange.notreddit.fragments.LoginFragment"
+        android:name="com.therealorange.notreddit.fragments.CreateCommunityFragment"
         android:label="create_community_fragment"
         tools:layout="@layout/fragment_create_community">
+        <action android:id="@+id/createCommunityCompleteToHomeAction"
+            app:destination="@id/fragmentMain"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/main_nav_graph"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/fragmentSettings"
@@ -86,5 +101,21 @@
         android:name="com.therealorange.notreddit.fragments.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/loginSelectToLogInUserAction"
+            app:destination="@id/fragmentLoginUser" />
+        <action
+            android:id="@+id/loginSelectToSignUpUserAction"
+            app:destination="@id/fragmentSignUpUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSubNotReddit"
+        android:name="com.therealorange.notreddit.fragments.SubNotRedditFragment"
+        android:label="subnotreddit_fragment"
+        tools:layout="@layout/fragment_subnotreddit">
+        <argument
+            android:name="subnotreddit_id"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

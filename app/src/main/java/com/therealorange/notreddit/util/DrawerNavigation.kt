@@ -10,6 +10,7 @@ object DrawerNavigation {
     private lateinit var navMap: Map<Int, ()->Unit>
     private lateinit var navController: NavController
     private lateinit var drawer: DrawerLayout
+    private lateinit var navView: NavigationView
 
     fun init(
         navMap: Map<Int, ()->Unit>,
@@ -20,6 +21,7 @@ object DrawerNavigation {
         DrawerNavigation.navMap = navMap
         DrawerNavigation.navController = navController
         DrawerNavigation.drawer = drawer
+        DrawerNavigation.navView = nav_view
         nav_view.setNavigationItemSelectedListener {
             val action = navMap[it.itemId] ?: return@setNavigationItemSelectedListener false
             action.invoke()
@@ -33,10 +35,18 @@ object DrawerNavigation {
     }
 
     fun logout() {
-
+        navView.menu.clear()
+        navView.inflateMenu(R.menu.normal_menu)
+        updateMenu(logged_out_map)
     }
 
-    fun updateMenu(navMap: Map<Int, ()->Unit>) {
+    fun login() {
+        navView.menu.clear()
+        navView.inflateMenu(R.menu.user_menu)
+        updateMenu(logged_in_map)
+    }
+
+    private fun updateMenu(navMap: Map<Int, ()->Unit>) {
         DrawerNavigation.navMap = navMap
     }
 
@@ -45,9 +55,6 @@ object DrawerNavigation {
 
     val logged_in_map = mapOf(
         R.id.nav_profileFragment to { navigate(R.id.fragmentProfile) },
-        R.id.nav_savedFragment to { navigate(R.id.fragmentSaved) },
-        R.id.nav_historyFragment to { navigate(R.id.fragmentHistory) },
-        R.id.nav_pendingPostsFragment to { navigate(R.id.fragmentPendingPosts) },
-        R.id.nav_draftsFragment to { navigate(R.id.fragmentsDrafts) },
-        R.id.nav_createCommunityFragment to { navigate(R.id.fragmentCreateCommunity) })
+        R.id.nav_createCommunityFragment to { navigate(R.id.fragmentCreateCommunity) },
+        R.id.nav_logoutFragment to { logout() })
 }

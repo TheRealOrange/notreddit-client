@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.therealorange.notreddit.tabs.FragmentObject
 
-class CollectionAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class CollectionAdapter(fragment: Fragment, private val id: String = "ARG_OBJECT",
+                        private val obj: String = "nothing"
+) : FragmentStateAdapter(fragment) {
     val fragments: MutableList<FragmentObject> = mutableListOf()
     val fragmentTitles: MutableList<String> = mutableListOf()
 
@@ -22,8 +24,7 @@ class CollectionAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         // Return a NEW tab_layout instance in createFragment(int)
         val fragment = fragments[position]
         fragment.arguments = Bundle().apply {
-            // Our object is just an integer :-P
-            putInt("ARG_OBJECT", position + 1)
+           putString(id, obj)
         }
         return fragment
     }

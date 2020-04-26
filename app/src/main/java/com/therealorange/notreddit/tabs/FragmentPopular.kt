@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.fragment_popular.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class FragmentPopular : FragmentObject(R.layout.fragment_popular,"Rating") {
+class FragmentPopular : FragmentObject(R.layout.fragment_popular,"Popular") {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey("ARG_OBJECT") }?.apply {
             rating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->

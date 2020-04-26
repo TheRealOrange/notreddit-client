@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.therealorange.notreddit.R
-import com.therealorange.notreddit.controllers.HistoryController
+import com.therealorange.notreddit.controllers.SignUpUserController
 
-class HistoryFragment : Fragment() {
-    val mainController = HistoryController
+class SignUpUserFragment : Fragment() {
+    val mainController = SignUpUserController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +44,6 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         mainController.onCreateView(this)
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        return inflater.inflate(R.layout.fragment_signup_user, container, false)
     }
 }

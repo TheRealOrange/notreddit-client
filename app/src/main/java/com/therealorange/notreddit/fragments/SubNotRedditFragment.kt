@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.therealorange.notreddit.R
-import com.therealorange.notreddit.controllers.DraftsController
+import com.therealorange.notreddit.controllers.ProfileController
+import com.therealorange.notreddit.controllers.SubNotRedditController
 
-class DraftsFragment : Fragment() {
-    val mainController = DraftsController
+class SubNotRedditFragment : Fragment() {
+    val mainController = SubNotRedditController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +45,6 @@ class DraftsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         mainController.onCreateView(this)
-        return inflater.inflate(R.layout.fragment_drafts, container, false)
+        return inflater.inflate(R.layout.fragment_subnotreddit, container, false)
     }
 }

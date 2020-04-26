@@ -1,8 +1,11 @@
 package com.therealorange.notreddit.dialogs
 
+import android.graphics.Bitmap
+
 data class BottomMenuItem(
+    val id: Int,
     val selected: Boolean,
-    val resId: Int,
+    val img: String,
     val name: String,
-    val action: () -> Unit
+    val action: (b: BottomMenuItem) -> Unit
 )

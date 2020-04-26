@@ -1,6 +1,5 @@
 package com.therealorange.notreddit.controllers
 
-import android.R
 import android.content.Intent
 import android.graphics.Bitmap
 import android.view.View
@@ -8,45 +7,75 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.therealorange.notreddit.MainActivity
 import com.therealorange.notreddit.adapters.PhotoPreviewAdapter
 import com.therealorange.notreddit.client.User
 import com.therealorange.notreddit.client.WebSocket
 import com.therealorange.notreddit.client.data.VoteStatus
 import com.therealorange.notreddit.client.data.objects.PostContent
+import com.therealorange.notreddit.dialogs.BottomMenuItem
+import com.therealorange.notreddit.dialogs.BottomSheetMenu
 import com.therealorange.notreddit.fragments.NewPostFragmentArgs
+import com.therealorange.notreddit.fragments.NewPostFragmentDirections
+import com.therealorange.notreddit.util.BottomNavigation
 import com.therealorange.notreddit.util.BottomNavigation.POST_IMG
 import com.therealorange.notreddit.util.BottomNavigation.POST_TEXT
 import com.therealorange.notreddit.util.BottomNavigation.POST_TEXTIMG
 import com.therealorange.notreddit.util.ImageUtils
 import kotlinx.android.synthetic.main.fragment_new_post.*
-import kotlin.math.roundToInt
-import kotlin.math.sqrt
 
 
 object NewPostController : FragmentController {
     private lateinit var mcontext: Fragment
     private var subNotRedditId = -1
     private var selectedImgs = mutableListOf<Bitmap>()
+    lateinit var menu: BottomSheetMenu
+    lateinit var adapter: PhotoPreviewAdapter
 
     override fun onCreateView(context: Fragment) {
+        BottomNavigation.hide(true)
+        menu = BottomSheetMenu(mcontext.requireContext(), mutableListOf())
+        User.userinfo.subscribed.forEach { subnotreddit ->
+            WebSocket.sendGetSubNotReddit(subnotreddit) { info ->
+                menu.addItem(BottomMenuItem(
+                    info.subNotRedditId,
+                    true,
+                    info.icon,
+                    info.name
+                ) {
+                    subNotRedditId = it.id
+                })
+            }
+        }
     }
 
     override fun onViewCreated(context: Fragment) {
         mcontext = context
         with(mcontext) {
+            newPostDismissButton.setOnClickListener { NewPostFragmentDirections.postCreatedToHomeFragment() }
+            newPostConfirmButton.setOnClickListener {
+                if (valid()) {
+                    createpost(success = {
+                        msg("Post created successfully")
+                        NewPostFragmentDirections.postCreatedToHomeFragment()
+                    }, failure = {
+                        msg("Failed to create post")
+                    })
+                }
+            }
             val args: NewPostFragmentArgs by navArgs()
             when (args.postType) {
                 POST_TEXT->{
+                    postTypeText.text = "Text Post"
                     newPostAddImg.visibility = View.GONE
                     newPostPhotoPreview.visibility = View.GONE
                 }
                 POST_IMG->{
+                    postTypeText.text = "Image Post"
                     newPostTextEdit.visibility = View.GONE
                     recyclerview(this)
                 }
                 POST_TEXTIMG->{
+                    postTypeText.text = "Text & Image Post"
                     recyclerview(this)
                 }
             }
@@ -57,7 +86,8 @@ object NewPostController : FragmentController {
         with (context) {
             val layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            newPostPhotoPreview.adapter = PhotoPreviewAdapter(context.requireContext(), mutableListOf())
+            adapter = PhotoPreviewAdapter(context.requireContext(), mutableListOf())
+            newPostPhotoPreview.adapter = adapter
             newPostPhotoPreview.layoutManager = layoutManager
         }
     }
@@ -65,24 +95,24 @@ object NewPostController : FragmentController {
     fun valid(): Boolean {
         with(mcontext) {
             if (subNotRedditId == -1 || !User.userinfo.subscribed.contains(subNotRedditId)) {
-                error("Please select a community you've joined").show()
+                msg("Please select a community you've joined").show()
                 return false
             }
             val args: NewPostFragmentArgs by navArgs()
             when (args.postType) {
                 POST_TEXT -> {
                     if (newPostTitleEdit.text.isEmpty() || newPostTextEdit.text.isEmpty()) {
-                        error("Post must have title and content").show()
+                        msg("Post must have title and content").show()
                     }
                 }
                 POST_IMG -> {
                     if (newPostTitleEdit.text.isEmpty() || selectedImgs.size <= 0) {
-                        error("Post must have title and at least 1 image").show()
+                        msg("Post must have title and at least 1 image").show()
                     }
                 }
                 POST_TEXTIMG -> {
                     if (newPostTitleEdit.text.isEmpty() || newPostTextEdit.text.isEmpty() || selectedImgs.size <= 0) {
-                        error("Post must have title, content and at least 1 image").show()
+                        msg("Post must have title, content and at least 1 image").show()
                     }
                 }
             }
@@ -90,7 +120,7 @@ object NewPostController : FragmentController {
         return true
     }
 
-    fun createpost(callback: ((post: PostContent) -> Unit)) {
+    fun createpost(success: (() -> Unit), failure: (() -> Unit)) {
         if (valid()) {
             with(mcontext) {
                 val args: NewPostFragmentArgs by navArgs()
@@ -102,31 +132,33 @@ object NewPostController : FragmentController {
                         }
                         POST_IMG -> {
                             val images = mutableListOf<String>()
-                            selectedImgs.forEach { ImageUtils.encodeTobase64(ImageUtils.scaleBitmap(it))?.let { it1 ->
+                            selectedImgs.forEach { ImageUtils.encodeToBase64(ImageUtils.scaleBitmap(it))?.let { it1 ->
                                 images.add(it1)
                             } }
                             post = PostContent.ImgPost(-1, newPostTitleEdit.text.toString(), -1, -1, User.userinfo, info, VoteStatus.UPVOTE, "", images.toList())
                         }
                         POST_TEXTIMG -> {
                             val images = mutableListOf<String>()
-                            selectedImgs.forEach { ImageUtils.encodeTobase64(ImageUtils.scaleBitmap(it))?.let { it1 ->
+                            selectedImgs.forEach { ImageUtils.encodeToBase64(ImageUtils.scaleBitmap(it))?.let { it1 ->
                                 images.add(it1)
                             } }
                             post = PostContent.ImgTextPost(-1, newPostTitleEdit.text.toString(), -1, -1, User.userinfo, info, VoteStatus.UPVOTE, "", images.toList(), newPostTextEdit.text.toString())
                         }
                     }
+                    if (post != null) {
+                        WebSocket.sendAddPost(post, success, failure)
+                    } else failure.invoke()
                 }
             }
         }
     }
 
-    fun error(s: String) = Toast.makeText(MainActivity.appContext,s, Toast.LENGTH_LONG)
+    fun msg(s: String) = Toast.makeText(mcontext.requireContext(),s, Toast.LENGTH_LONG)
 
     override fun restoreState() {
     }
 
     override fun onDestroyView() {
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

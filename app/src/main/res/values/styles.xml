@@ -10,6 +10,8 @@
         <item name="colorBackgroundAccent">@color/black</item>
         <item name="colorText">@color/white</item>
         <item name="colorTextAccent">@color/colorTextAccentDark</item>
+        <item name="colorUpvote">@color/red</item>
+        <item name="colorDownvote">@color/blue</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
     <style name="AppTheme_Light" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -21,6 +23,8 @@
         <item name="colorBackgroundAccent">@color/leaf_green_muted</item>
         <item name="colorText">@color/black</item>
         <item name="colorTextAccent">@color/leaf_green</item>
+        <item name="colorUpvote">@color/red</item>
+        <item name="colorDownvote">@color/blue</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 

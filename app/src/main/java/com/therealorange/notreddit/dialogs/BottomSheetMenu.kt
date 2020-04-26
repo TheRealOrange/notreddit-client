@@ -13,16 +13,21 @@ class BottomSheetMenu(private val context: Context,
                       private val items: List<BottomMenuItem>) {
 
     private val bottomSheetDialog: BottomSheetDialog = BottomSheetDialog(context)
+    lateinit var adapter: BottomSheetMenuAdapter
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_menu, null)
         bottomSheetDialog.setContentView(view)
 
         with(view) {
+            adapter = BottomSheetMenuAdapter(items)
             bottom_sheet_recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            bottom_sheet_recycler.adapter = BottomSheetMenuAdapter(items)
+            bottom_sheet_recycler.adapter = adapter
         }
     }
+
+    fun addItem(item: BottomMenuItem) = adapter.addItem(item)
+    fun updateItem(item: BottomMenuItem, position: Int) = adapter.updateItem(item, position)
 
     fun show() {
         bottomSheetDialog.show()

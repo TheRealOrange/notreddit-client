@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.therealorange.notreddit.R
 import com.therealorange.notreddit.dialogs.BottomMenuItem
+import com.therealorange.notreddit.util.DownloadImageTask
 import kotlinx.android.synthetic.main.bottom_sheet_menu_item.view.*
 
 class BottomSheetMenuAdapter(private var items: List<BottomMenuItem>) : RecyclerView.Adapter<BottomSheetMenuAdapter.BottomSheetMenuViewHolder>() {
@@ -18,6 +19,13 @@ class BottomSheetMenuAdapter(private var items: List<BottomMenuItem>) : Recycler
 
     override fun onBindViewHolder(holder: BottomSheetMenuViewHolder, position: Int) {
         holder.bind(items[position])
+    }
+
+    fun addItem(b: BottomMenuItem) {
+        val temp = items.toMutableList()
+        temp.add(b)
+        items = temp.toList()
+        notifyDataSetChanged()
     }
 
     fun updateItem(b: BottomMenuItem, position: Int) {
@@ -34,7 +42,7 @@ class BottomSheetMenuAdapter(private var items: List<BottomMenuItem>) : Recycler
         fun bind(item: BottomMenuItem) {
             with(view) {
                 bottom_menu_title.text = item.name
-                bottom_menu_icon.setImageResource(item.resId)
+                DownloadImageTask(bottom_menu_icon).execute(item.img)
 
                 if (item.selected) {
                     bottom_menu_title.setTextColor(R.attr.colorText)
@@ -44,7 +52,7 @@ class BottomSheetMenuAdapter(private var items: List<BottomMenuItem>) : Recycler
                     bottom_menu_icon.setColorFilter(R.attr.colorTextAccent)
                 }
 
-                setOnClickListener { item.action() }
+                setOnClickListener { item.action(item) }
             }
         }
     }

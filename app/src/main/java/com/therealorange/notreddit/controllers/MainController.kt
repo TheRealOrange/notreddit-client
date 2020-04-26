@@ -8,6 +8,7 @@ import com.therealorange.notreddit.adapters.CollectionAdapter
 import com.therealorange.notreddit.tabs.FragmentHome
 import com.therealorange.notreddit.tabs.FragmentNews
 import com.therealorange.notreddit.tabs.FragmentPopular
+import com.therealorange.notreddit.util.BottomNavigation
 import kotlinx.android.synthetic.main.fragment_main.*
 
 object MainController : FragmentController {
@@ -24,7 +25,9 @@ object MainController : FragmentController {
         collectionAdapter.addFragment(newsFragment)
         collectionAdapter.addFragment(homeFragment)
         collectionAdapter.addFragment(popularFragment)
+        BottomNavigation.hide(false)
     }
+
 
     override fun onViewCreated(context: Fragment) {
         mcontext = context
